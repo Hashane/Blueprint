@@ -6,6 +6,7 @@ namespace Judehashane\Blueprint;
 
 use Illuminate\Support\ServiceProvider;
 use Judehashane\Blueprint\Commands\InstallBlueprintCommand;
+use Judehashane\Blueprint\Contracts\Configuration;
 
 final class BlueprintServiceProvider extends ServiceProvider
 {
@@ -27,10 +28,23 @@ final class BlueprintServiceProvider extends ServiceProvider
             __DIR__.'/../stubs/tests.yml' => base_path('.github/workflows/tests.yml'),
         ], 'blueprint-stubs');
 
+        $this->applyConfigurations();
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 InstallBlueprintCommand::class,
             ]);
         }
+    }
+
+    private function applyConfigurations(): void
+    {
+        /** @var array<int, class-string<Configuration>> $configurations */
+        $configurations = config('blueprint.configurations', []);
+
+        collect($configurations)
+            ->map(fn (string $configuration): Configuration => $this->app->make($configuration))
+            ->filter(fn (Configuration $configuration): bool => $configuration->enabled())
+            ->each(fn (Configuration $configuration) => $configuration->apply());
     }
 }
