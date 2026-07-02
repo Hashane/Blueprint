@@ -16,7 +16,11 @@
     "require-dev": {
         "orchestra/testbench": "^10.0|^11.0",
         "pestphp/pest": "^3.0|^4.0",
-        "pestphp/pest-plugin-laravel": "^3.0|^4.0"
+        "pestphp/pest-plugin-laravel": "^3.0|^4.0",
+        "laravel/pint": "^1.29",
+        "phpstan/phpstan": "^2.2",
+        "rector/rector": "^2.5",
+        "driftingly/rector-laravel": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +40,16 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/pest"
+        "rector": "rector process",
+        "rector:test": "rector process --dry-run",
+        "analyse": "phpstan analyse --memory-limit=2G",
+        "test": "pest",
+        "quality": [
+            "@rector:test",
+            "pint --test",
+            "@analyse",
+            "@test"
+        ]
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
