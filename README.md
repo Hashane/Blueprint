@@ -6,6 +6,9 @@
 [![Laravel Version](https://img.shields.io/badge/Laravel-%5E12%20%7C%20%5E13-FF2D20?logo=laravel&logoColor=white)](composer.json)
 ![Buckle Up](.github/badges/buckle-up.svg)
 
+[![Tests](https://github.com/Hashane/Blueprint/actions/workflows/tests.yml/badge.svg)](https://github.com/Hashane/Blueprint/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Opinionated, production-ready Laravel standards — all in one go.
 
 It applies a set of production-safety and dev-quality defaults the moment it's installed — no config publishing required, no provider to wire up by hand. It also bootstraps a fresh project's tooling — Pint, PHPStan/Larastan, and Rector — via a single install command.
