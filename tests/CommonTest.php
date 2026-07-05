@@ -11,7 +11,6 @@ use Judehashane\Blueprint\Configurations\ForceHttpsScheme;
 use Judehashane\Blueprint\Configurations\PreventStrayProcesses;
 use Judehashane\Blueprint\Configurations\PreventStrayRequests;
 use Judehashane\Blueprint\Configurations\ProhibitDestructiveCommands;
-use Judehashane\Blueprint\Configurations\QueueFailedJobLogging;
 use Judehashane\Blueprint\Configurations\StrictModels;
 
 dataset('production-gated configurations', [
@@ -19,7 +18,6 @@ dataset('production-gated configurations', [
     'DefaultPasswordRules' => [DefaultPasswordRules::class, 'blueprint.password.enforce_rule'],
     'ForceHttpsScheme' => [ForceHttpsScheme::class, 'blueprint.force_https_scheme'],
     'AutomaticEagerLoading' => [AutomaticEagerLoading::class, 'blueprint.automatically_eager_load_relationships'],
-    'QueueFailedJobJobLogging' => [QueueFailedJobLogging::class, 'blueprint.queue_failed_job_logging'],
 ]);
 
 dataset('dev-gated configurations', [
