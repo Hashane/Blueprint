@@ -68,7 +68,3 @@ composer quality     # Rector dry-run, Pint, PHPStan, Pest
 ## Contributing
 
 PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## License
-
-MIT.
