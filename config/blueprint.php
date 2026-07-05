@@ -6,6 +6,7 @@ use Judehashane\Blueprint\Configurations\AutomaticEagerLoading;
 use Judehashane\Blueprint\Configurations\DatabaseMonitoring;
 use Judehashane\Blueprint\Configurations\DefaultPasswordRules;
 use Judehashane\Blueprint\Configurations\ForceHttpsScheme;
+use Judehashane\Blueprint\Configurations\ImmutableDates;
 use Judehashane\Blueprint\Configurations\PreventStrayProcesses;
 use Judehashane\Blueprint\Configurations\PreventStrayRequests;
 use Judehashane\Blueprint\Configurations\ProhibitDestructiveCommands;
@@ -39,6 +40,7 @@ return [
         PreventStrayRequests::class,
         PreventStrayProcesses::class,
         QueueFailedJobLogging::class,
+        ImmutableDates::class,
     ],
 
     /*
@@ -196,5 +198,20 @@ return [
     */
 
     'queue_failed_job_logging' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Immutable Dates
+    |--------------------------------------------------------------------------
+    |
+    | When true, ImmutableDates calls Date::use(CarbonImmutable::class) —
+    | applied everywhere, not just production, so code relying on Carbon's
+    | mutable in-place behavior (e.g. discarding addDay()'s return value)
+    | fails the same way in development as it would in production, instead
+    | of only surfacing once it ships.
+    |
+    */
+
+    'immutable_dates' => true,
 
 ];
